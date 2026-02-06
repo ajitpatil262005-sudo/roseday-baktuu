@@ -5,119 +5,162 @@
 <title>Happy Rose Day Bhaktuuu ❤️</title>
 
 <style>
-    body {
-        margin: 0;
-        height: 100vh;
-        background:
-            radial-gradient(circle at top, rgba(255,182,193,0.8), rgba(139,0,0,0.9)),
-            url("https://images.unsplash.com/photo-1526045612212-70caf35c14df");
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Segoe UI', sans-serif;
-        overflow: hidden;
-        color: white;
-        text-align: center;
-    }
+* { box-sizing: border-box; }
 
-    .overlay {
-        position: absolute;
-        inset: 0;
-        background: rgba(0,0,0,0.55);
-        z-index: 1;
-    }
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    background: black;
+    color: white;
+}
 
-    .card {
-        position: relative;
-        z-index: 2;
-        background: rgba(0,0,0,0.6);
-        padding: 40px 50px;
-        border-radius: 25px;
-        box-shadow: 0 0 50px rgba(255,0,0,0.8);
-        max-width: 420px;
-        animation: pop 1.3s ease;
-    }
+/* ---------- INTRO SCREEN ---------- */
+#intro {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, #ffb6c1, #8b0000);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    transition: opacity 1s ease;
+}
 
-    @keyframes pop {
-        from { transform: scale(0.4); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
-    }
+.bee {
+    font-size: 80px;
+    animation: fly 2s infinite alternate;
+}
 
-    .rose {
-        font-size: 95px;
-        animation: sway 2s infinite alternate;
-    }
+@keyframes fly {
+    from { transform: translateX(-20px); }
+    to { transform: translateX(20px); }
+}
 
-    @keyframes sway {
-        from { transform: rotate(-12deg); }
-        to { transform: rotate(12deg); }
-    }
+.heart-btn {
+    margin-top: 20px;
+    font-size: 70px;
+    cursor: pointer;
+    animation: pulse 1.2s infinite;
+}
 
-    h1 {
-        margin: 8px 0;
-        font-size: 32px;
-    }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
 
-    h2 {
-        font-weight: normal;
-        color: #ffd6dc;
-        margin-bottom: 10px;
-    }
+.tap-text {
+    margin-top: 10px;
+    font-size: 16px;
+    opacity: 0.9;
+}
 
-    #message {
-        font-size: 18px;
-        line-height: 1.6;
-        white-space: pre-line;
-        margin-top: 12px;
-    }
+/* ---------- MAIN PAGE ---------- */
+#main {
+    display: none;
+    height: 100vh;
+    background:
+        radial-gradient(circle at top, rgba(255,182,193,0.8), rgba(139,0,0,0.9)),
+        url("https://images.unsplash.com/photo-1526045612212-70caf35c14df");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
 
-    .shayari {
-        margin-top: 20px;
-        font-style: italic;
-        color: #ffccd5;
-        border-top: 1px solid rgba(255,255,255,0.3);
-        padding-top: 15px;
-        font-size: 17px;
-    }
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+}
 
-    .heart {
-        position: absolute;
-        color: pink;
-        font-size: 22px;
-        animation: floatUp 7s linear infinite;
-        z-index: 0;
-    }
+.card {
+    position: relative;
+    z-index: 2;
+    max-width: 420px;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.6);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 0 50px rgba(255,0,0,0.8);
+    text-align: center;
+    animation: pop 1.2s ease;
+}
 
-    @keyframes floatUp {
-        from { transform: translateY(110vh) scale(0.7); opacity: 1; }
-        to { transform: translateY(-10vh) scale(1.6); opacity: 0; }
-    }
+@keyframes pop {
+    from { transform: translateY(-50%) scale(0.6); opacity: 0; }
+    to { transform: translateY(-50%) scale(1); opacity: 1; }
+}
 
-    .hint {
-        margin-top: 12px;
-        font-size: 12px;
-        opacity: 0.85;
-    }
+.rose {
+    font-size: 90px;
+    animation: sway 2s infinite alternate;
+}
+
+@keyframes sway {
+    from { transform: rotate(-10deg); }
+    to { transform: rotate(10deg); }
+}
+
+h1 { margin: 10px 0; }
+h2 { font-weight: normal; color: #ffd6dc; }
+
+#message {
+    white-space: pre-line;
+    line-height: 1.6;
+    margin-top: 15px;
+}
+
+.shayari {
+    margin-top: 20px;
+    font-style: italic;
+    color: #ffccd5;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 15px;
+}
+
+.heart {
+    position: absolute;
+    color: pink;
+    font-size: 22px;
+    animation: floatUp 7s linear infinite;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(110vh) scale(0.7); opacity: 1; }
+    to { transform: translateY(-10vh) scale(1.6); opacity: 0; }
+}
 </style>
 </head>
 
 <body>
 
-<div class="overlay"></div>
+<!-- INTRO -->
+<div id="intro">
+    <div class="bee">🐝</div>
+    <div class="heart-btn" onclick="startLove()">❤️</div>
+    <div class="tap-text">Tap the heart</div>
+</div>
 
-<!-- Auto-play music (muted first, unmute on tap) -->
-<audio id="bgm" autoplay loop muted>
+<!-- MUSIC -->
+<audio id="bgm" loop playsinline>
     <source src="https://cdn.pixabay.com/audio/2022/10/26/audio_64c11c4a18.mp3" type="audio/mpeg">
 </audio>
 
-<div class="card">
-    <div class="rose">🌹</div>
-    <h1>Happy Rose Day</h1>
-    <h2>Bhaktuuu ❤️</h2>
+<!-- MAIN CONTENT -->
+<div id="main">
+    <div class="overlay"></div>
 
-    <div id="message">
+    <div class="card">
+        <div class="rose">🌹</div>
+        <h1>Happy Rose Day</h1>
+        <h2>Bhaktuuu ❤️</h2>
+
+        <div id="message">
 Bhaktuuu…
 
 Aaj Rose Day hai,
@@ -129,32 +172,26 @@ sabse khoobsurat gulaab ho.
 
 Jo kabhi murjhaata nahi,
 sirf aur gehra rang leta hai. ❤️
-    </div>
+        </div>
 
-    <div class="shayari">
-        “Gulaab sirf phool nahi hota,<br>
-        kuch jazbaat bhi saath lata hai…<br>
-        Aur tum woh khushboo ho,<br>
-        jo meri zindagi mehka jaati hai.” 🌹
-    </div>
-
-    <div class="hint">
-        (Tap anywhere once for music 🎶)
+        <div class="shayari">
+“Gulaab sirf phool nahi hota,<br>
+kuch jazbaat bhi saath lata hai…<br>
+Aur tum woh khushboo ho,<br>
+jo meri zindagi mehka jaati hai.” 🌹
+        </div>
     </div>
 </div>
 
 <script>
-const music = document.getElementById("bgm");
-
-function enableSound() {
-    music.muted = false;
-    music.volume = 0.7;
-    document.removeEventListener("click", enableSound);
-    document.removeEventListener("touchstart", enableSound);
+function startLove() {
+    document.getElementById("bgm").play();
+    document.getElementById("intro").style.opacity = "0";
+    setTimeout(() => {
+        document.getElementById("intro").style.display = "none";
+        document.getElementById("main").style.display = "block";
+    }, 1000);
 }
-
-document.addEventListener("click", enableSound);
-document.addEventListener("touchstart", enableSound);
 
 function createHeart() {
     const heart = document.createElement("div");
@@ -162,12 +199,11 @@ function createHeart() {
     heart.innerHTML = "❤";
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.animationDuration = (4 + Math.random() * 4) + "s";
-    document.body.appendChild(heart);
+    document.getElementById("main").appendChild(heart);
     setTimeout(() => heart.remove(), 7000);
 }
-setInterval(createHeart, 280);
+setInterval(createHeart, 300);
 </script>
 
 </body>
 </html>
-

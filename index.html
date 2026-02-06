@@ -32,21 +32,21 @@
     .card {
         position: relative;
         z-index: 2;
-        background: rgba(0,0,0,0.55);
+        background: rgba(0,0,0,0.6);
         padding: 40px 50px;
         border-radius: 25px;
         box-shadow: 0 0 50px rgba(255,0,0,0.8);
-        animation: pop 1.4s ease;
         max-width: 420px;
+        animation: pop 1.3s ease;
     }
 
     @keyframes pop {
-        0% { transform: scale(0.4); opacity: 0; }
-        100% { transform: scale(1); opacity: 1; }
+        from { transform: scale(0.4); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
     }
 
     .rose {
-        font-size: 100px;
+        font-size: 95px;
         animation: sway 2s infinite alternate;
     }
 
@@ -56,30 +56,30 @@
     }
 
     h1 {
-        margin: 10px 0;
+        margin: 8px 0;
         font-size: 32px;
     }
 
     h2 {
         font-weight: normal;
         color: #ffd6dc;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
 
     #message {
         font-size: 18px;
         line-height: 1.6;
-        min-height: 140px;
         white-space: pre-line;
+        margin-top: 12px;
     }
 
     .shayari {
-        margin-top: 18px;
+        margin-top: 20px;
         font-style: italic;
         color: #ffccd5;
-        font-size: 17px;
         border-top: 1px solid rgba(255,255,255,0.3);
         padding-top: 15px;
+        font-size: 17px;
     }
 
     .heart {
@@ -91,20 +91,14 @@
     }
 
     @keyframes floatUp {
-        0% {
-            transform: translateY(110vh) scale(0.7);
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(-10vh) scale(1.6);
-            opacity: 0;
-        }
+        from { transform: translateY(110vh) scale(0.7); opacity: 1; }
+        to { transform: translateY(-10vh) scale(1.6); opacity: 0; }
     }
 
     .hint {
+        margin-top: 12px;
         font-size: 12px;
         opacity: 0.85;
-        margin-top: 10px;
     }
 </style>
 </head>
@@ -113,8 +107,8 @@
 
 <div class="overlay"></div>
 
-<!-- Romantic background music -->
-<audio autoplay loop>
+<!-- Auto-play music (muted first, unmute on tap) -->
+<audio id="bgm" autoplay loop muted>
     <source src="https://cdn.pixabay.com/audio/2022/10/26/audio_64c11c4a18.mp3" type="audio/mpeg">
 </audio>
 
@@ -123,22 +117,8 @@
     <h1>Happy Rose Day</h1>
     <h2>Bhaktuuu ❤️</h2>
 
-    <div id="message"></div>
-
-    <div class="shayari">
-        “Gulaab sirf phool nahi hota,<br>
-        kuch jazbaat bhi saath lata hai…<br>
-        Aur tum toh woh khushboo ho,<br>
-        jo meri zindagi mehka jaati hai.” 🌹
-    </div>
-
-    <h2 style="margin-top:18px;">— Yours, Forever 💖</h2>
-    <div class="hint">(Headphones recommended 🎧)</div>
-</div>
-
-<script>
-const text =
-`Bhaktuuu…
+    <div id="message">
+Bhaktuuu…
 
 Aaj Rose Day hai,
 isliye ek phool diya hai…
@@ -148,20 +128,33 @@ tum meri zindagi ka
 sabse khoobsurat gulaab ho.
 
 Jo kabhi murjhaata nahi,
-sirf aur gehra rang leta hai. ❤️`;
+sirf aur gehra rang leta hai. ❤️
+    </div>
 
-let i = 0;
-const speed = 55;
+    <div class="shayari">
+        “Gulaab sirf phool nahi hota,<br>
+        kuch jazbaat bhi saath lata hai…<br>
+        Aur tum woh khushboo ho,<br>
+        jo meri zindagi mehka jaati hai.” 🌹
+    </div>
 
-function typeWriter() {
-    if (i < text.length) {
-        document.getElementById("message").innerHTML +=
-            text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
-        i++;
-        setTimeout(typeWriter, speed);
-    }
+    <div class="hint">
+        (Tap anywhere once for music 🎶)
+    </div>
+</div>
+
+<script>
+const music = document.getElementById("bgm");
+
+function enableSound() {
+    music.muted = false;
+    music.volume = 0.7;
+    document.removeEventListener("click", enableSound);
+    document.removeEventListener("touchstart", enableSound);
 }
-typeWriter();
+
+document.addEventListener("click", enableSound);
+document.addEventListener("touchstart", enableSound);
 
 function createHeart() {
     const heart = document.createElement("div");
@@ -172,8 +165,7 @@ function createHeart() {
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 7000);
 }
-
-setInterval(createHeart, 250);
+setInterval(createHeart, 280);
 </script>
 
 </body>
